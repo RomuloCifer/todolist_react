@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { MainContainer } from "./styled";
 
 function Main() {
   // [tarefas, setTarefas] O primeiro elemento é o estado atual (tarefas) e o segundo é a função para atualizar esse estado (setTarefas)
@@ -25,6 +26,7 @@ function Main() {
   };
 
   return (
+    <MainContainer>
     <main>
       <section>
         <input
@@ -56,6 +58,7 @@ function Main() {
         )}
       </section>
     </main>
+    </MainContainer>
   );
 }
 
