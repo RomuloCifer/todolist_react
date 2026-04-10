@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 
 function Main() {
-  const [tarefas, setTarefas] = useState([]); // guarda a lista de tareas
-  const [novaTarefa, setNovaTarefa] = useState(""); // Guarda o texto do usuario
+  // [tarefas, setTarefas] O primeiro elemento é o estado atual (tarefas) e o segundo é a função para atualizar esse estado (setTarefas)
+  // useState([]) começa com uma lista vazia de tarefas
+  const [tarefas, setTarefas] = useState([]);
+  const [titulo, setTitulo] = useState(""); // Guarda o título da tarefa
+  const [descricao, setDescricao] = useState(""); // Guarda a descrição da tarefa
 
   const adicionarTarefa = () => {
-    const texto = novaTarefa.trim();
-    if (!texto) {
+    const textoTitulo = titulo.trim();
+    if (!textoTitulo) {
       return; // Sem tarefas vazias :D
     }
-    const novaTarefaObj = {
+    const novaTarefaObjeto = {
       id: Date.now(), // ID baseado no tempo atual p/ ser unico
-      texto,
+      titulo: textoTitulo,
+      descricao: descricao.trim(),
       concluida: false,
     };
 
-    setTarefas([...tarefas, novaTarefaObj]); // Adiciona a nova tarefa na lista
-    setNovaTarefa(""); // Limpa o input apos adicionar
+    setTarefas([...tarefas, novaTarefaObjeto]); //pega todas as tarefas e adiciona a nova
+    setTitulo(""); // Limpa o input apos adicionar
+    setDescricao(""); // Limpa a descrição apos adicionar
   };
 
   return (
@@ -24,19 +29,28 @@ function Main() {
       <section>
         <input
           type="text"
-          placeholder="Digite uma nova tarefa"
-          value={novaTarefa}
-          onChange={(e) => setNovaTarefa(e.target.value)} // Atualiza o estado novaTarefa com o valor do input
+          placeholder="Título da tarefa"
+          value={titulo}
+          onChange={(e) => setTitulo(e.target.value)} // Atualiza o estado titulo com o valor do input
+        />
+        <textarea
+          placeholder="Descrição da tarefa"
+          value={descricao}
+          onChange={(e) => setDescricao(e.target.value)}
+          //quando o valor mudar, pega o evento que fez a mudança, e faz o setDescricao com o valor atual do texto, ou seja, oq o usuario digitou.
         />
         <button onClick={adicionarTarefa}>Adicionar</button>
       </section>
       <section className="Tarefas">
         {tarefas.length === 0 ? (
-          "Nada por enquanto"
+          "Poidi relaxar"
         ) : (
           <ul>
             {tarefas.map((tarefa) => (
-              <li key={tarefa.id}>{tarefa.texto}</li>
+              <li key={tarefa.id}>
+                <strong>{tarefa.titulo}</strong>
+                {tarefa.descricao && <p>{tarefa.descricao}</p>}
+              </li>
             ))}
           </ul>
         )}
