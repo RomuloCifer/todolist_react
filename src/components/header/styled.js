@@ -1,12 +1,35 @@
 import styled from "styled-components";
 
 export const AreaHeader = styled.div`
-  background-color: #368d50;
+  background-color: #002329;
   height: 100px;
   color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 50px;
-  text-shadow: 2px 2px 4px #000;
+
+  .Container {
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+  }
+    .Title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-left: 20px;
+      flex: 2;
+    }
+    .Logo {
+    flex: 1;
+      img {
+        height: 80px;
+        width: auto;}
+    }
+
+    nav {
+      ul {
+        display: flex;
+        li {
+          list-style: none;
+          margin-left: 20px;
+          cursor: pointer;}
+      }
+    }
 `;
