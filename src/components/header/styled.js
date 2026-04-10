@@ -21,6 +21,7 @@ export const AreaHeader = styled.div`
       img {
         height: 80px;
         width: auto;}
+        cursor: pointer;
     }
 
     nav {

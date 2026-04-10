@@ -22,7 +22,7 @@ export const MainContainer = styled.main`
             cursor: pointer;
         }
             ul {
-                padding: 20;
+                padding: 20;}
                 }
     }`;
 

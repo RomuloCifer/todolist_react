@@ -24,6 +24,15 @@ function Main() {
     setTitulo(""); // Limpa o input apos adicionar
     setDescricao(""); // Limpa a descrição apos adicionar
   };
+  const alternarConcluida = (id) => {
+    // Função para alternar o status de concluída de uma tarefa
+    setTarefas(
+      tarefas.map((tarefa) =>
+        tarefa.id === id ? {...tarefa, concluida: !tarefa.concluida } : tarefa
+      // se o ID for o mesmo que o da tarefa, cria uma cópia do objeto com o oposto do valor de concluida, se não, retorna a tarefa semy mmudanças.
+      )
+    )
+  }
 
   return (
     <MainContainer>
@@ -49,9 +58,23 @@ function Main() {
         ) : (
           <ul>
             {tarefas.map((tarefa) => (
-              <li key={tarefa.id}>
+              <li
+                key={tarefa.id}
+                style={{
+                  textDecoration: tarefa.concluida ? "line-through" : "none",
+                  color: tarefa.concluida ? "#888" : "#000",
+                  // Se a tarefa estiver concluída, risca o texto, se não, deixa normal.
+                }}
+              >
                 <strong>{tarefa.titulo}</strong>
                 {tarefa.descricao && <p>{tarefa.descricao}</p>}
+                <button
+                  type="button"
+                  onClick={() => alternarConcluida(tarefa.id)}
+                  // Quando clicar no botão, a função para alternar concluida é chamada com o ID da tarefa.
+                >
+                  {tarefa.concluida ? "Desmarcar" : "Marcar como feita"}
+                </button>
               </li>
             ))}
           </ul>
